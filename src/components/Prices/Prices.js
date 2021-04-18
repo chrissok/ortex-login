@@ -23,7 +23,6 @@ export default function Prices() {
 
         webSocket.onmessage = (event) => {
             const data = JSON.parse(event.data)
-            console.log(data)
 
             if (isNewData(data)) {
                 return
@@ -35,7 +34,6 @@ export default function Prices() {
         }
 
         webSocket.onerror = (error) => {
-
             console.log("error" + error)
         }
     })
