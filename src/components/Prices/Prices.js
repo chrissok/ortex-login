@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
+import spinner from '../../assets/spinner.gif'
 import { styles } from './Prices.style';
 
 
@@ -9,6 +10,7 @@ export default function Prices() {
 
     const [eurUsdExchange, setEurUsdExchange] = useState("")
     const [dateTime, setDateTime] = useState("")
+    const [loading, setLoading] = useState(true)
 
     function isNewData(data) {
         return data.topic === "keepalive"
@@ -26,6 +28,7 @@ export default function Prices() {
             if (isNewData(data)) {
                 return
             } else {
+                setLoading(false)
                 setDateTime(data.dt)
                 setEurUsdExchange(data.price)
             }
@@ -39,15 +42,14 @@ export default function Prices() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.eurUsdExchange}>
-                EUR/USD
-            </div>
-            <div className={styles.price}>
-                {eurUsdExchange}
-            </div>
-            <div className={styles.dateTime}>
-                {moment(dateTime).format('LLL')}
-            </div>
+
+            {loading && <img src={spinner}></img>}
+
+            {eurUsdExchange && <div className={styles.eurUsdExchange}> EUR/USD </div>}
+
+            {eurUsdExchange && <div className={styles.price}> {eurUsdExchange} </div>}
+
+            {dateTime && <div className={styles.dateTime}> {moment(dateTime).format('LLL')} </div>}
         </div>
     )
 }
