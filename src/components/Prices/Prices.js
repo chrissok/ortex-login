@@ -41,7 +41,7 @@ export default function Prices() {
     return (
         <div className={styles.container}>
 
-            {loading && <img src={spinner}></img>}
+            {loading && <img alt="spinner" src={spinner}></img>}
 
             {eurUsdExchange && <div className={styles.eurUsdExchange}> EUR/USD </div>}
 
