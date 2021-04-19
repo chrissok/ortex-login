@@ -7,4 +7,7 @@ Login app for ortex technical task
 - npm install
 - npm run start
 
+or 
+
+- open /build/index.html
 
